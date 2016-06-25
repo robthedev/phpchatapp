@@ -6,25 +6,9 @@ function addComment () {
 	}
 
 	requestData = $('#last_displayed_chat_id,#user_name,#user_comment').serialize();
-	$.ajax({
-		url: 'http://localhost:80/chat_app/server.php',
-		type: 'get',
-		dataType: 'json',
-		data: requestData,
-		
-		success: function(response, status, http) {
-			$.each(response, function(index, el) {
-				$('#chat_box').val( $('#chat_box').val() + el.user_name + ':' + el.user_comment + '\n' );
-				$('#last_displayed_chat_id').val( el.chat_id );
-			});
-			$('#user_comment').val('');
-		},
-		error: function (http, status, error) {
-			alert('some error occured. ' + error);
-		}
 
+	getData(requestData);
 
-	});
 		return false;
 }
 
@@ -32,11 +16,20 @@ function addComment () {
 
 
 function updateChat () {
-	$.ajax({
+
+	updateData = 'last_displayed_chat_id='+$('#last_displayed_chat_id').val();
+	
+	getData(updateData);
+	
+}
+
+function getData(_data) {
+
+$.ajax({
 		url: 'http://localhost:80/chat_app/server.php',
 		type: 'get',
 		dataType: 'json',
-		data: 'last_displayed_chat_id='+$('#last_displayed_chat_id').val(),
+		data: _data,
 		
 		success: function(response, status, http) {
 			$.each(response, function(index, el) {
@@ -51,8 +44,7 @@ function updateChat () {
 
 
 	});
-	
-	
+
 }
 
 setInterval(updateChat, 5000);
