@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chatter Bocks</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+		<form id ="chat_form" onsubmit="return addComment();">
+			<header>Chatroom</header>	
+			<br/>
+			<label>User Name</label>
+			<input type="text" id="user_name" name="user_name" value="" />
+			<label>Last Displayed Chat ID</label>
+			<input type="text" id="last_displayed_chat_id" name="last_displayed_chat_id" value="0" readonly />
+			<label>Chat</label>
+			<textarea rows="10" id="chat_box"></textarea>
+			<label>Add Comment</label>
+			<input type="text" name="user_comment" id="user_comment">
+			<input type="Submit" value="Add Comment" />
+			<br/>
+		</form>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script src="app.js"></script>
+</body>
+</html>
